@@ -23,9 +23,10 @@ function retSite(title, pagetitle, pages, authors) {
       </ul>
     </div>
     <div id="main">
-    <!-- INSERT INFORMATION -->
       <noscript><p style="color: red; text-decoration: underline;">You don't have a JavaScript-enabled browser, so this website may not look or function as intended for you. Please download a more modern browser such as the latest versions of Mozilla Firefox, Google Chrome, Apple Safari, or Microsoft Edge</p></noscript>
       <h1 class="mainheading">` + pagetitle + `</h1>
+      <br><br><br>
+      <!-- INSERT CONTENT -->
     </div>
     <div id="footer">
       <p>&copy; Copyright 2017. All Rights Reserved. <br>
@@ -54,7 +55,7 @@ function index(title, pages, authors) {
     var value = pages[key];
     pgs += '<a href="' + key + '/"><li>' + value + '</li></a>\n';
   }
-  pgs += '<a href="refs/"><li>References<li></a>\n';
+  pgs += '<a href="refs/"><li>References</li></a>\n';
   var out = retSite(title, title, pgs, authorsStr);
   return out;
 
@@ -70,12 +71,12 @@ function refs(title, pages, authors) {
     else authorsStr += ', ' + authors[i];
   }
 
-  var pgs = '<a href="../"><li>Home<li></a>\n';
+  var pgs = '<a href="../"><li>Home</li></a>\n';
   for (var key in pages) {
     var value = pages[key];
-    pgs += '<a href="' + key + '/"><li>' + value + '</li></a>\n';
+    pgs += '<a href="../' + key + '/"><li>' + value + '</li></a>\n';
   }
-  pgs += '<a href="#" class="currentPage"><li>References<li></a>\n';
+  pgs += '<a href="#" class="currentPage"><li>References</li></a>\n';
   var out = retSite('References | ' + title, 'References', pgs, authorsStr);
   return out;
 
@@ -115,12 +116,18 @@ function mkCss(nav, body) {
 
   #footer {
     font-size: 10px;
-    color: #000;
+    color: `;
+    if (body == "black" || body == "#000" || body == "#000000") out += "#fff";
+    else out += "#000";
+    out += `;
     text-align: center;
   }
 
   #footer a {
-    color: #000;
+    color: `;
+    if (body == "black" || body == "#000" || body == "#000000") out += "#fff";
+    else out += "#000";
+    out += `;
   }
 
   #nav ul {
@@ -161,14 +168,14 @@ function mkCss(nav, body) {
 }
 
 function pgGen(pages, curPage) {
-  var out = '<a href="../"><li>Home<li></a>\n';
+  var pgs = '<a href="../"><li>Home</li></a>\n';
   for (var key in pages) {
     var value = pages[key];
-    if (key == curPage) out += '<a href="#" class="currentPage"><li>' + value + '</li></a>\n';
-    else out += '<a href="../' + key + '/"><li>' + value + '</li></a>\n';
+    if (key == curPage) pgs += '<a href="#" class="currentPage"><li>' + value + '</li></a>\n';
+    else pgs += '<a href="../' + key + '/"><li>' + value + '</li></a>\n';
   }
-  out += '<a href="../refs/"><li>References<li></a>\n';
-  return out;
+  pgs += '<a href="#" class="currentPage"><li>References</li></a>\n';
+  return pgs;
 }
 
 function cheetjs(code, title, page) {
