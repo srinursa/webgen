@@ -1,9 +1,3 @@
-/* If you're reading this someone probably broke something horribly because
- * there is literally no reason for someone to be this deep down in the kernel.
- * In that case, you should probably find a computer technician because the fact
- * that you're seeing this means your computer is broken probably beyond repair.
- */
-
 function retSite(title, pagetitle, pages, authors) {
   var out = `<!DOCTYPE html>
   <html lang="en">
