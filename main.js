@@ -111,7 +111,7 @@ function mkCss(nav, body) {
   #footer {
     font-size: 10px;
     color: `;
-    if (body == "black" || body == "#000" || body == "#000000") out += "#fff";
+    if (tinycolor(body).isDark()) out += "#fff";
     else out += "#000";
     out += `;
     text-align: center;
@@ -119,7 +119,7 @@ function mkCss(nav, body) {
 
   #footer a {
     color: `;
-    if (body == "black" || body == "#000" || body == "#000000") out += "#fff";
+    if (tinycolor(body).isDark()) out += "#fff";
     else out += "#000";
     out += `;
   }
