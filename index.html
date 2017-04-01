@@ -10,6 +10,15 @@
 </head>
 <body>
   <p>main(title, titlehref, pages{"href": "Full Name"}, authors[], navclr, mainclr, cheetcode[code, page])</p>
-</form>
+  <form action="">
+    <input type="text" value="Title" id="title">
+    <input type="text" value="titlehref" id="itlehref">
+    <input type="text" value="{'pagehref': 'Full Page Name'}" id="pages">
+    <input type="text" value="['author']" id="authors">
+    <input type="text" value="#456" id="mainclr">
+    <input type="text" value="#abc" id="navclr">
+    <input type="text" value="['c o d e', 'pagehref']" id="cheetcode">
+    <input type="button" value="Submit!" onclick="var inps = document.getElementsByTagName('input'); eval('var inpsiival = ' + inps[2].value + ';'); main(inps[0].value, inps[1].value, inpsiival, eval(inps[3].value), inps[4].value, inps[5].value, eval(inps[6].value));">
+  </form>
 </body>
 </html>

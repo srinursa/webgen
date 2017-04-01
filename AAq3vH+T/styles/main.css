@@ -1,0 +1,75 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,600';
+
+  html, body {
+    height: 100%;
+    margin: auto;
+    padding: 0;
+  }
+
+  body {
+    background-color: #abc;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  #main {
+    background-color: #fff;
+    min-height: 85%;
+    width: 80%;
+    margin-left: 10%;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .mainheading {
+    text-align: center;
+  }
+
+  .currentPage {
+    font-weight: bold;
+  }
+
+  #footer {
+    font-size: 10px;
+    color: #000;
+    text-align: center;
+  }
+
+  #footer a {
+    color: #000;
+  }
+
+  #nav ul {
+    background-color: #456;
+    color: #fff;
+    width: 100%;
+    top: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  #nav ul a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  #nav ul a li {
+    display: inline-block;
+    border-right: solid #fff 1px;
+    padding: 18px;
+    float: left;
+  }
+
+  #nav ul a:last-child li, #nav ul a:nth-last-child(2) li {
+    border: none;
+  }
+
+  #nav ul a li:hover {
+    color: #abc;
+  }
+
+  #nav ul a:last-child li {
+    float: right;
+  }
