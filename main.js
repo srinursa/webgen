@@ -126,7 +126,10 @@ function mkCss(nav, body) {
 
   #nav ul {
     background-color: ` + nav + `;
-    color: #fff;
+    color: `;
+    if (tinycolor(nav).isDark()) out += "#fff";
+    else out += "#000";
+    out += `;
     width: 100%;
     top: 0;
     list-style-type: none;
@@ -137,12 +140,18 @@ function mkCss(nav, body) {
 
   #nav ul a {
     text-decoration: none;
-    color: #fff;
+    color: `;
+    if (tinycolor(nav).isDark()) out += "#fff";
+    else out += "#000";
+    out += `;
   }
 
   #nav ul a li {
     display: inline-block;
-    border-right: solid #fff 1px;
+    border-right: solid `;
+    if (tinycolor(nav).isDark()) out += "#fff";
+    else out += "#000";
+    out += ` 1px;
     padding: 18px;
     float: left;
   }
