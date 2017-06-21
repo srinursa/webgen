@@ -19,7 +19,6 @@ function retSite(title, pagetitle, pages, authors) {
     <div id="main">
       <noscript><p style="color: red; text-decoration: underline;">You don't have a JavaScript-enabled browser, so this website may not look or function as intended for you. Please download a more modern browser such as the latest versions of Mozilla Firefox, Google Chrome, Apple Safari, or Microsoft Edge</p></noscript>
       <h1 class="mainheading">` + pagetitle + `</h1>
-      <br><br><br>
       <!-- INSERT CONTENT -->
     </div>
     <div id="footer">
