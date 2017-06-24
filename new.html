@@ -5,12 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>WebsiteGen</title>
+  <style media="screen">
+    table {
+      border: none;
+    }
+    td {
+      vertical-align: top;
+    }
+  </style>
+  <script>
+    function authors() {
+      var aispan = document.getElementById('ai');
+      var ai = Number(aispan.innerHTML);
+
+      var inpf = document.createElement('input');
+      inpf.type = 'text';
+      inpf.id = 'a' + ai.toString() + 'i';
+
+      var armb = document.createElement('button');
+      armb.innerHTML = 'Remove';
+      armb.id = 'a' + ai.toString();
+      armb.onclick = function() {
+        var aspan = document.getElementById("authorsspan");
+        aspan.removeChild(document.getElementById(this.id + 'i'));
+        aspan.removeChild(document.getElementById(this.id + 'b'));
+        aspan.removeChild(document.getElementById(this.id));
+      };
+
+      var abr = document.createElement('br');
+      abr.id = 'a' + ai.toString() + 'b'
+
+      document.getElementById('authorsspan').appendChild(abr);
+      document.getElementById('authorsspan').appendChild(inpf);
+      document.getElementById('authorsspan').appendChild(armb);
+
+      aispan.innerHTML = (ai + 1).toString();
+    }
+  </script>
 </head>
 <body>
+  <span style="display: none;" id="ai">0</span>
   <form action="">
-    Title: <input type="text" id="title"><br>
-    HREF: <input type="text" id="titlehref"><br>
-    
+    <table>
+    <tr><td>Title:</td><td><input type="text" id="title"></td></tr>
+    <tr><td>HREF:</td><td><input type="text" id="titlehref"></td></tr>
+    <tr><td>Main Colo(u)r:</td><td><input type="text" id="mainclr"></td></tr>
+    <tr><td>Navbar Colo(u)r:</td><td><input type="text" id="navclr"></td></tr>
+    <tr><td>Author(s):</td><td><div style="display:inline-block;" id="authors"><span id="authorsspan"><input type="text"></span><br><input type="button" value="Add Author" onclick="authors()"></div></td></tr>
+    </table>
   </form>
 </body>
 </html>
