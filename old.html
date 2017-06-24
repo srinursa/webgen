@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WebsiteGen</title>
+  <script src="jszip.js"></script>
+  <script src="main.js"></script>
+</head>
+<body>
+  <p>main(title, titlehref, pages{"href": "Full Name"}, authors[], navclr, mainclr, cheetcode[code, page])</p>
+  <p>IMPORTANT: This has only been tested with FirefoxDevEdition on MacOS Sierra. If you're using a different browser, if the zip file downloads, it works. If a file downloads but it's not a zip file, just add the '.zip' extension to the end of the name and it'll work. Then unarchive the zip file, and {IMPORTANT} RENAME THE FOLDER WITH THE TITLEHREF, OTHERWISE THE WEBSITE WON'T WORK AS EXPECTED.</p>
+  <form action="">
+    <input type="text" value="Title" id="title">
+    <input type="text" value="titlehref" id="itlehref">
+    <input type="text" value="{'pagehref': 'Full Page Name'}" id="pages">
+    <input type="text" value="['author']" id="authors">
+    <input type="text" value="#456" id="mainclr">
+    <input type="text" value="#abc" id="navclr">
+    <input type="text" value="['c o d e', 'pagehref']" id="cheetcode">
+    <input type="button" value="Submit!" onclick="var inps = document.getElementsByTagName('input'); eval('var inpsiival = ' + inps[2].value + ';'); main(inps[0].value, inps[1].value, inpsiival, eval(inps[3].value), inps[4].value, inps[5].value, eval(inps[6].value));">
+  </form>
+</body>
+</html>

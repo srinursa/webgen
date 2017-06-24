@@ -5,21 +5,132 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>WebsiteGen</title>
+  <link rel="stylesheet" href="main.css">
+  <style media="screen">
+    table {
+      border: none;
+    }
+    td {
+      vertical-align: top;
+    }
+  </style>
   <script src="jszip.js"></script>
   <script src="main.js"></script>
+  <script>
+    function authors() {
+      var aispan = document.getElementById('ai');
+      var ai = Number(aispan.innerHTML);
+
+      var inpf = document.createElement('input');
+      inpf.type = 'text';
+      inpf.id = 'a' + ai.toString() + 'i';
+
+      var armb = document.createElement('button');
+      armb.innerHTML = 'Remove';
+      armb.id = 'a' + ai.toString();
+      armb.onclick = function() {
+        var aspan = document.getElementById("authorsspan");
+        aspan.removeChild(document.getElementById(this.id + 'i'));
+        aspan.removeChild(document.getElementById(this.id + 'b'));
+        aspan.removeChild(document.getElementById(this.id));
+      };
+
+      var abr = document.createElement('br');
+      abr.id = 'a' + ai.toString() + 'b'
+
+      document.getElementById('authorsspan').appendChild(abr);
+      document.getElementById('authorsspan').appendChild(inpf);
+      document.getElementById('authorsspan').appendChild(armb);
+
+      aispan.innerHTML = (ai + 1).toString();
+    }
+
+    function pages() {
+      var gispan = document.getElementById('gi');
+      var gi = Number(gispan.innerHTML);
+
+      var inpga = document.createElement('input');
+      inpga.type = 'text';
+
+      var inpgb = document.createElement('input');
+      inpgb.type = 'text';
+
+      var grmb = document.createElement('button');
+      grmb.id = 'g' + gi.toString();
+      grmb.innerHTML = 'Remove';
+      grmb.onclick = function() {
+        var gtbl = document.getElementById("gtbl");
+        gtbl.removeChild(document.getElementById(this.id + 'tr'));
+        gtbl.removeChild(document.getElementById(this.id));
+      };
+
+      var gtbl = document.getElementById('gtbl');
+
+      var telda = document.createElement('td');
+      telda.appendChild(inpga)
+
+      var teldb = document.createElement('td');
+      teldb.appendChild(inpgb)
+
+      var teldc = document.createElement('td');
+      teldc.appendChild(grmb)
+
+      var tele = document.createElement('tr');
+      tele.id = 'g' + gi.toString() + 'tr';
+      tele.appendChild(telda);
+      tele.appendChild(teldb);
+      tele.appendChild(teldc);
+
+      gtbl.appendChild(tele);
+
+      gispan.innerHTML = (gi + 1).toString();
+    }
+
+    function pmain() {
+      var authorsi = [];
+      var pagesi = {};
+
+      var ainps = document.getElementById('authorsspan').getElementsByTagName('input');
+      for (i = 0; i < ainps.length; i++) {
+        if (ainps[i].value) {
+          authorsi.push(ainps[i].value);
+        }
+      }
+
+      var ginps = document.getElementById('gtbl').getElementsByTagName('tr');
+      for (i = 1; i < ginps.length; i++) {
+        var kt = ginps[i].getElementsByTagName('td');
+        var kta = kt[0].getElementsByTagName('input')[0].value;
+        var ktb = kt[1].getElementsByTagName('input')[0].value;
+
+        if (kta && ktb) {
+          pagesi[ktb] = kta;
+        }
+      }
+
+      console.log(authorsi);
+      console.log(pagesi);
+
+
+      main(document.getElementById('title').value, document.getElementById('titlehref').value, pagesi, authorsi, document.getElementById('navclr').value, document.getElementById('mainclr').value, undefined);
+    }
+  </script>
 </head>
 <body>
-  <p>main(title, titlehref, pages{"href": "Full Name"}, authors[], navclr, mainclr, cheetcode[code, page])</p>
-  <p>IMPORTANT: This has only been tested with FirefoxDevEdition on MacOS Sierra. If you're using a different browser, if the zip file downloads, it works. If a file downloads but it's not a zip file, just add the '.zip' extension to the end of the name and it'll work. Then unarchive the zip file, and {IMPORTANT} RENAME THE FOLDER WITH THE TITLEHREF, OTHERWISE THE WEBSITE WON'T WORK AS EXPECTED.</p>
-  <form action="">
-    <input type="text" value="Title" id="title">
-    <input type="text" value="titlehref" id="itlehref">
-    <input type="text" value="{'pagehref': 'Full Page Name'}" id="pages">
-    <input type="text" value="['author']" id="authors">
-    <input type="text" value="#456" id="mainclr">
-    <input type="text" value="#abc" id="navclr">
-    <input type="text" value="['c o d e', 'pagehref']" id="cheetcode">
-    <input type="button" value="Submit!" onclick="var inps = document.getElementsByTagName('input'); eval('var inpsiival = ' + inps[2].value + ';'); main(inps[0].value, inps[1].value, inpsiival, eval(inps[3].value), inps[4].value, inps[5].value, eval(inps[6].value));">
-  </form>
+  <div id="main">
+    <span style="display: none;" id="ai">0</span>
+    <span style="display: none;" id="gi">0</span>
+    <h1 style="text-align: center;">Website Generator</h1>
+    <p style="color: red;"><b>IMPORTANT: This has only been tested with FirefoxDevEdition and Safari on MacOS Sierra. If you're using a different browser and/or OS, if the zip file downloads, it works. If a file downloads but it's not a zip file, just add the '.zip' extension to the end of the name and it'll work. Then unarchive the zip file, and {IMPORTANT} RENAME THE FOLDER WITH THE TITLEHREF, OTHERWISE THE WEBSITE WON'T WORK AS EXPECTED.</b></p>
+    <table>
+    <tr><td><b>Title:</b></td><td><input type="text" id="title"></td></tr>
+    <tr><td><b>HREF:</b></td><td><input type="text" id="titlehref"></td></tr>
+    <tr><td><b>Main Colo(u)r:</b></td><td><input type="text" id="mainclr"></td></tr>
+    <tr><td><b>Navbar Colo(u)r:</b></td><td><input type="text" id="navclr"></td></tr>
+    <tr><td><b>Author(s):</b></td><td><div style="display:inline-block;" id="authors"><span id="authorsspan"><input type="text"></span><br><input type="button" value="Add Author" onclick="authors()"></div></td></tr>
+    <tr><td><b><br>Page(s):</b></td><td><table id='gtbl'><tr><td><b>Page Title</b></td><td><b>Page HREF</b></td><td></td></tr><tr><td id='ptt'><input type="text"></td><td id='pth'><input type="text"></td><td></td></tr></table><input type="button" value="Add Page" onclick="pages()"></td></tr>
+    </table>
+    <button style="text-align: center" onclick="pmain();">Submit!</button>
+  </div>
 </body>
 </html>
